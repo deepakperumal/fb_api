@@ -1,0 +1,138 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.1/angular-sanitize.js"></script>
+<!--   <script src="http://rawgit.com/kensnyder/quill-image-resize-module/master/image-resize.min.js"></script> -->
+  
+  
+    <!-- Include stylesheet -->
+  <link href="https://cdn.quilljs.com/1.2.6/quill.snow.css" rel="stylesheet">
+</head>
+
+<body ng-app="myApp">
+  
+  <div class="container" ng-controller="myCtrl">
+    
+      <quill-editor quill-data="myCtrl.quillData" quill-config="myCtrl.quillConfig">
+      </quill-editor>
+
+  <!-- Create the editor container -->
+<!--   <div id="editor" ng-model="quillText">
+    <p>Hello World!</p>
+    <p>Some initial <strong>bold</strong> text</p>
+    <p><br></p>
+  </div> -->
+    
+    <pre>{{quillDataJSON}}
+    </pre>
+    
+    <pre>{{quillDataText}}
+    </pre>
+    
+    <div ng-bind-html="quillDataHTML">
+    </div>
+
+  <!-- Include the Quill library -->
+  <script src="https://cdn.quilljs.com/1.2.6/quill.js"></script>
+
+  <!-- Initialize Quill editor -->
+  <script>
+angular.module("myApp", ['ngSanitize'])
+  .controller("myCtrl", function($scope) {
+  
+    $scope.quillDataJSON = "init";
+    $scope.quillDataText = "init";
+    $scope.quillDataHTML = "init";
+  
+    $scope.quillData = "hahaha";
+    $scope.quillConfig = "hahaConfig";
+  
+    $scope.changeData = function() {
+      $scope.quillData = "config";   
+    };
+  
+    $scope.clickMe = function() {
+      alert("thanks!");
+    };
+  })
+  .directive('quillEditor', function($compile) {
+    return {
+      restrict: 'E',
+      // for now shared scope
+      // TODO: find a way to get attributes from directive with shared scope
+      
+      // scope: {
+      //    // passed directive data
+      //     quillData: '=',
+      //     quillConfig: '='
+      // },
+      link: function($scope, $element) {
+           var template= '<div id="editor">' +
+                    '<p>Hello World!</p>' +
+                    '<p>Some initial <strong>bold</strong> text</p>' +
+                    '<p><br></p>'
+              '</div>';
+          var linkFunc = $compile(template);
+          var content = linkFunc($scope);
+          $element.append(content);
+        
+          // setup quill config after adding to DOM
+          var quill = new Quill('#editor', {
+            modules: {
+              // ImageResize: {},
+              toolbar: [
+                [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                // [{ 'header': 1 }, { 'header': 2 }],
+                [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+                ['bold', 'italic', 'underline', 'strike', 'link'],
+                [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+                [{ 'font': [] }],
+                [{ 'align': [] }],
+                ['clean'],                                         // remove formatting button
+                ['blockquote', 'code-block'],
+                ['video', 'image'],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+                [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+              ]
+            },
+            placeholder: 'Compose an epic...',
+            theme: 'snow'  // or 'bubble'
+          });
+        
+          quill.on('text-change', function() {
+            var delta = quill.getContents();
+            var text = quill.getText();
+            var justHtml = quill.root.innerHTML;
+            
+            //console.log(JSON.stringify(delta));
+            
+            // THIS WOULD NOT WORK WITHOUT SCOPE.APPLY
+            $scope.$apply(function() {
+              console.log(quill.root.innerHTML);
+              
+              $scope.quillDataJSON = JSON.stringify(delta);
+              $scope.quillDataText = text;
+              $scope.quillDataHTML = justHtml;
+            });
+          });
+       
+      },
+      
+      // transclude: true,
+      // template: '<div class="well"><h3>Template content</h3><div ng-transclude></div></div>'
+      // template: '<div id="editor">' +
+      //               '<p>Hello World!</p>' +
+      //               '<p>Some initial <strong>bold</strong> text</p>' +
+      //               '<p><br></p>'
+      //         '</div>';
+    };
+  });
+  </script>
+
+  </div>
+</body>
+</html>
