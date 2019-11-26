@@ -1,0 +1,22 @@
+<div class="post-wrap">
+  <div class="card-wrap row">
+    <div class="col-sm-12">
+      <p class="title">Timeline Feeds</p>
+    </div>
+    <div class="col-sm-4" ng-repeat="data in res">
+      <div class="feed-cont">
+        <p class="updated-at">{{data.updated_time | date}}</p>
+        <img
+          ng-if="data.full_picture"
+          src="{{data.full_picture}}"
+          class="feed-img"
+          alt="..."
+        />
+
+        <div class="feed-text">
+          {{data.message}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
