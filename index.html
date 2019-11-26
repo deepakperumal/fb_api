@@ -11,21 +11,19 @@
   </head>
 
   <body ng-app="app">
-      <ui-view></ui-view>
+    <ui-view></ui-view>
 
+    <!--Dependency-->
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.23/angular-ui-router.js"></script>
 
-<!--Dependency-->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.23/angular-ui-router.js"></script>
-
-<!--Scripts-->
-<script src="app.js"></script>
-<script src="./scripts/controllers/feed.controller.js"></script>
-<script src="./scripts/services/feed.service.js"></script>
-<script src="./scripts/factories/feed.factory.js"></script>
-<script src="./scripts/configs/app.config.js"></script>
-
-
+    <!--Scripts-->
+    <script src="app.js"></script>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script src="./scripts/controllers/feed.controller.js"></script>
+    <script src="./scripts/services/feed.service.js"></script>
+    <script src="./scripts/factories/feed.factory.js"></script>
+    <script src="./scripts/configs/app.config.js"></script>
   </body>
 </html>

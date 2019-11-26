@@ -5,6 +5,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('state1', {
       url: "/",
       templateUrl: "pages/login.html",
+      controller:'loginController'
  
       
     })
