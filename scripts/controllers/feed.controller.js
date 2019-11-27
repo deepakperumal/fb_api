@@ -5,8 +5,8 @@ app.controller('feedController', [
   'loginService',
   function(scope, feedService, state, redirectService) {
     if (!localStorage.getItem('access_token')) state.go('login');
-    feedService.beginGetFeeds.then(function(result) {
-      scope.res = result.data.data;
+    feedService.beginGetFeeds().then(function(result) {
+      scope.res = result.data;
     });
     scope.logout = function() {
       redirectService.logout();
