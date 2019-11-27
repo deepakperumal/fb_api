@@ -1,4 +1,4 @@
-app.service('redirectService', function($state) {
+app.service('loginService', function($state) {
   this.login = function() {
     FB.login(function(response) {
       if (response.authResponse) {
@@ -16,7 +16,7 @@ app.service('redirectService', function($state) {
 
   this.logout = function() {
     FB.logout(function(response) {});
-    $state.go('home');
-    localStorage.setItem('access_token', '');
+    $state.go('login');
+    localStorage.removeItem('access_token');
   };
 });

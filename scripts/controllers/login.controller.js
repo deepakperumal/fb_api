@@ -1,10 +1,10 @@
 app.controller('authController', [
   '$scope',
-  'redirectService',
-  function(scope, redirectService) {
-    console.log(redirectService.res);
+  'loginService',
+  function(scope, loginService) {
+    console.log(loginService.res);
     scope.fbLogin = function() {
-      redirectService.login();
+      loginService.login();
     };
   }
 ]);
