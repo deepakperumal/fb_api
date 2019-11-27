@@ -1,10 +1,3 @@
-app.factory('accessToken', function() {
-  return {
-    apiKey:
-      'EAAKEWWl0yGMBANv7RbkMYR2EtxQtQFjsSsw9rUuUZACJL0OZAqbfZCD3Qi5H2wg5R3dhZBWMQKn7IbOOAbd09RU8lphHViOdfSkf516EbPbxnl7UZBLuIl376IagiDs3gskQ1RS9ZAJhb3HZBz7ZA6rFWzuiUHZBoELRe4wfimOJZAkXfS9ZAETS5mayPRWSi66bBOGhSJIvyjoobscHlbwoBu4'
-  };
-});
-
 
 app.factory('facebookService', function($q) {
   return {
@@ -15,7 +8,7 @@ app.factory('facebookService', function($q) {
           }, function(response) {
             
               if (!response || response.error) {
-                  deferred.reject('Error occured');
+                  deferred.reject('Error occurred');
               } else {
                   deferred.resolve(response);
               }

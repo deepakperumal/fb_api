@@ -142,7 +142,7 @@ body  {
 }
  .feed-img  {
   width: 100%;
-  height: 340px;
+  height: 300px;
 }
 .feed-text {
   height: 114px;
@@ -160,4 +160,11 @@ body  {
   width: 100%;
   background-image: linear-gradient(to bottom right, #84fff6, #cd87ea);
 }
- 
+.logout {
+  font-size: 13px;
+  float: right;
+  padding: 7px;
+  width: 87px;
+  background: #ffff;
+  border: 1px solid;
+}

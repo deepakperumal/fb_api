@@ -1,19 +1,15 @@
-
 app.config(function($stateProvider, $urlRouterProvider) {
-  
   $stateProvider
-    .state('state1', {
-      url: "/",
-      templateUrl: "pages/login.html",
-      controller:'loginController'
- 
-      
+    .state('home', {
+      url: '/',
+      templateUrl: 'pages/login.html',
+      controller: 'authController'
     })
-    
-    .state('state2', {
-      url: "/feed",
-      templateUrl: "pages/feed.html",
+
+    .state('feed', {
+      url: '/feed',
+      templateUrl: 'pages/feed.html',
       controller: 'feedController'
     });
-    $urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise('/');
 });
