@@ -1,9 +1,5 @@
-app.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
-
-  //$httpProvider.interceptors.push( interceptHttp );
-
-
-
+app.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+  $httpProvider.interceptors.push('appInterceptor');
   $stateProvider
     .state('login', {
       url: '/',
