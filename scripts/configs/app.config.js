@@ -9,7 +9,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('feed', {
       url: '/feed',
       templateUrl: 'pages/feed.html',
-      controller: 'feedController'
+      controller: 'feedController',
+ 
     });
   $urlRouterProvider.otherwise('/');
 });
