@@ -7,7 +7,7 @@ app.factory('storageFactory', [
     };
 
     obj.retrieveValue = function(key) {
-      localStorage.getItem(key);
+      return localStorage.getItem(key);
     };
 
     obj.removeValue = function(key) {

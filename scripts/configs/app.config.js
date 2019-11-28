@@ -1,4 +1,9 @@
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
+
+  //$httpProvider.interceptors.push( interceptHttp );
+
+
+
   $stateProvider
     .state('login', {
       url: '/',
@@ -10,7 +15,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/feed',
       templateUrl: 'pages/feed.html',
       controller: 'feedController',
- 
+      resolve: {
+        security: [
+          '$q',
+          'authService',
+          function($q, authService) {
+            if (!authService.isAuthorized()) {
+              return $q.reject('Not Authorized');
+            }
+          }
+        ]
+      }
     });
   $urlRouterProvider.otherwise('/');
 });

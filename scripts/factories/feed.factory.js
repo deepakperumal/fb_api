@@ -1,5 +1,5 @@
 
-app.factory('facebookService', function($q) {
+app.factory('facebookService', ['$q',function($q) {
   return {
       getMyLastName: function() {
           var deferred = $q.defer();
@@ -16,4 +16,4 @@ app.factory('facebookService', function($q) {
           return deferred.promise;
       }
   }
-});
+}]);
